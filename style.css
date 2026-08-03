@@ -67,6 +67,13 @@ a {
     background: #146c43;
 }
 
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+}
+
 /* ==========================================
    Mobile Hamburger Menu Styles
    ========================================== */
@@ -91,17 +98,7 @@ a {
     transition: all 0.3s ease;
 }
 
-/* Responsive Breakpoints & Mobile Header Fixes */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 20px;
-    }
-
-    /* Prevents header padding overflow on small mobile viewports */
-    header {
-        padding: 15px 20px !important;
-    }
-
     .hamburger {
         display: flex;
     }
