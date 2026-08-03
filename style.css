@@ -1,0 +1,75 @@
+/* ==========================================
+   Sandbox.io - Global Design System & CSS
+   ========================================== */
+
+:root {
+    --bg-color: #f8fafc;
+    --surface-color: #ffffff;
+    --primary-green: #0f5132;
+    --accent-green: #198754;
+    --light-green: #e8f5e9;
+    --text-main: #212529;
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+    --badge-bg: #d1e7dd;
+    --font-main: 'Inter', sans-serif;
+}
+
+/* Global Reset & Box Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Reusable Layout Containers */
+.container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+/* Global Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-green);
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Standardized Buttons */
+.btn-primary {
+    background: var(--accent-green);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    transition: background 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #146c43;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+}
