@@ -138,6 +138,59 @@
             text-align: center;
         }
 
+        /* Modal Styles (Issue #6) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--surface-color);
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-muted);
+            z-index: 10;
+        }
+
         footer {
             border-top: 1px solid var(--border-color);
             padding: 40px 0;
@@ -275,6 +328,16 @@
         </div>
     </section>
 
+    <!-- Campaign Details Modal View Overlay (Issue #6) -->
+    <div class="modal-overlay" id="campaignModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div id="modalBodyContent">
+                <!-- Dynamically populated via JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -285,7 +348,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript Filtering Logic -->
+    <!-- JavaScript Filtering & Dynamic Modal Logic (Issue #6) -->
     <script>
         function filterProjects(category) {
             const cards = document.querySelectorAll('.project-card');
@@ -305,6 +368,73 @@
                 }
             });
         }
+
+        // Dynamic Modal Management
+        const modalOverlay = document.getElementById('campaignModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const modalBody = document.getElementById('modalBodyContent');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        projectCards.forEach(card => {
+            const backBtn = card.querySelector('.project-footer .btn-primary');
+            
+            const openModalAction = (e) => {
+                e.preventDefault();
+                const title = card.querySelector('h3').innerText;
+                const location = card.querySelector('.project-location').innerText;
+                const category = card.querySelector('.badge-category').innerText;
+                const metrics = card.querySelectorAll('.metric-row');
+                
+                let metricsHtml = '';
+                metrics.forEach(row => {
+                    const label = row.querySelector('.metric-label').innerText;
+                    const value = row.querySelector('.metric-value').innerText;
+                    metricsHtml += `<div class="metric-row"><span class="metric-label">${label}</span><span class="metric-value">${value}</span></div>`;
+                });
+
+                modalBody.innerHTML = `
+                    <div style="margin-bottom: 20px;">
+                        <span class="badge-category" style="margin-bottom: 10px; display: inline-block;">${category}</span>
+                        <h2 style="color: var(--primary-green); font-size: 24px; margin-bottom: 5px;">${title}</h2>
+                        <div class="project-location" style="font-size: 14px;">${location}</div>
+                    </div>
+                    <div style="background: var(--light-green); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        ${metricsHtml}
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
+                        This campaign is 100% asset-backed under strict Shariah-compliant Murabaha trading guidelines. Funds are utilized directly for commodity acquisition and physical trade management.
+                    </p>
+                    <div style="border-top: 1px solid var(--border-color); padding-top: 20px;">
+                        <h4 style="color: var(--primary-green); margin-bottom: 10px; font-size: 16px;">Quick Investment Calculator</h4>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 5px;">Enter Investment Amount (BDT):</label>
+                            <input type="number" id="investAmountInput" placeholder="e.g. 20000" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;" />
+                        </div>
+                        <button class="btn-primary" style="width: 100%;" onclick="alert('Investment commitment registered successfully under Murabaha terms!'); closeModal();">Confirm Halal Investment</button>
+                    </div>
+                `;
+                modalOverlay.classList.add('active');
+            };
+
+            backBtn.addEventListener('click', openModalAction);
+        });
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
     </script>
 
     <!-- Mobile Menu Toggle Script -->
