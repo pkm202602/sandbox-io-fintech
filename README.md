@@ -2,7 +2,11 @@
 Official web presence and investment portal for Sandbox.io (Sandbox Technology Limited) — an Agri-Fintech and rural investment platform connecting local and global investors with verified, asset-backed, Shariah-compliant opportunities in agriculture, fisheries, livestock, poultry, and rural SMEs.
 
 Visit: 
+
+https://www.facebook.com/sandbox.io/ 
+
 https://pkm202602.github.io/sandbox-io-fintech/index.html 
+
 
 
 Why Foreign Investors Should Watch Bangladesh’s Agri-Fintech Revolution 🇧🇩
@@ -15,6 +19,7 @@ A Bangladesh-based Agri-Fintech & Rural Investment Platform connecting investors
 🐄 Livestock
 🍃 Tea Industry
 🚜 Rural SMEs & Supply Chains
+
 Why Bangladesh?
 ✅ $50+ Billion Agricultural Economy
 ✅ Strong export growth in shrimp & fisheries
@@ -29,6 +34,7 @@ Why Bangladesh?
 ✔ Asset-backed real economy investments
 ✔ Technology-driven agri-fintech infrastructure
 ✔ Risk grading & field verification systems
+
 Sandbox.io aims to bridge:
 🌍 Global Investors ↔ 🌾 Rural Bangladesh
 📈 Why This Matters for Investors
@@ -37,17 +43,20 @@ Sandbox.io aims to bridge:
 • ESG & impact investment benefits
 • Real-economy, asset-backed financing
 • Access to halal investment markets
+
 🔮 Future Vision
 Sandbox.io aims to become one of South Asia’s leading rural investment infrastructure platforms through:
 🤖 AI-driven agri-fintech
 📊 Smart risk analysis
 🌱 Digital agricultural finance ecosystems
 🌍 Global halal impact investment network
+
 Bangladesh’s rural economy is evolving — and the opportunity is just beginning.
 📞 Sandbox Technology Limited (Sandbox.io)
 📍 Khulna, Bangladesh
 📞 +8801700680069
 📧 sandbox.ioglobal@gmail.com
+
 #Sandboxio #Bangladesh #AgriFintech #ImpactInvestment #HalalInvestment #Agriculture #ShrimpFarming #Fintech #EmergingMarkets #RuralDevelopment #ESGInvesting #InvestmentOpportunity #SouthAsia #Agritech #IslamicFinance
 
 A fintech sandbox is a safe testing ground for new money products. It lets creators test ideas without breaking big rules. Two main types exist: data sandboxes (like the Fintech Sandbox.io) and regulatory sandboxes run by government banks.
