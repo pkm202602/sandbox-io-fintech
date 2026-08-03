@@ -51,6 +51,18 @@
             color: var(--primary-green);
         }
 
+        .dashboard-grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .dashboard-grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .dashboard-card {
             background: var(--surface-color);
             border: 1px solid var(--border-color);
@@ -65,6 +77,27 @@
             font-size: 18px;
             margin-bottom: 20px;
             font-weight: 600;
+        }
+
+        .quick-action-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--light-green);
+            color: var(--primary-green);
+            text-align: left;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .quick-action-btn:hover {
+            background: var(--primary-green);
+            color: #ffffff;
         }
 
         .table-responsive {
@@ -182,90 +215,116 @@
                 </div>
             </div>
 
-            <!-- Active Campaign Allocations Card -->
-            <div class="dashboard-card">
-                <h3>Active Campaign Allocations</h3>
-                <div class="table-responsive">
-                    <table class="dashboard-table">
-                        <thead>
-                            <tr>
-                                <th>Campaign Title</th>
-                                <th>Category</th>
-                                <th>Invested Amount</th>
-                                <th>Expected Return</th>
-                                <th>Tenure Progress</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Banana Harvest & Trading</strong></td>
-                                <td>Agriculture</td>
-                                <td>45,000 BDT</td>
-                                <td>21% - 25%</td>
-                                <td>Month 3 of 6</td>
-                                <td><span class="status-badge">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Onion Storage & Trading - 1</strong></td>
-                                <td>Trading</td>
-                                <td>50,000 BDT</td>
-                                <td>11.5% - 14%</td>
-                                <td>Month 2 of 4</td>
-                                <td><span class="status-badge">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Cattle - 1 (গরু - ১)</strong></td>
-                                <td>Livestock</td>
-                                <td>50,000 BDT</td>
-                                <td>12% - 17%</td>
-                                <td>Month 1 of 8</td>
-                                <td><span class="status-badge">Active</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <!-- Main Layout Grid with Quick Actions Panel -->
+            <div class="dashboard-grid-layout">
+                
+                <!-- Left Column: Allocations & History -->
+                <div>
+                    <!-- Active Campaign Allocations Card -->
+                    <div class="dashboard-card">
+                        <h3>Active Campaign Allocations</h3>
+                        <div class="table-responsive">
+                            <table class="dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>Campaign Title</th>
+                                        <th>Category</th>
+                                        <th>Invested Amount</th>
+                                        <th>Expected Return</th>
+                                        <th>Tenure Progress</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Banana Harvest & Trading</strong></td>
+                                        <td>Agriculture</td>
+                                        <td>45,000 BDT</td>
+                                        <td>21% - 25%</td>
+                                        <td>Month 3 of 6</td>
+                                        <td><span class="status-badge">Active</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Onion Storage & Trading - 1</strong></td>
+                                        <td>Trading</td>
+                                        <td>50,000 BDT</td>
+                                        <td>11.5% - 14%</td>
+                                        <td>Month 2 of 4</td>
+                                        <td><span class="status-badge">Active</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Cattle - 1 (গরু - ১)</strong></td>
+                                        <td>Livestock</td>
+                                        <td>50,000 BDT</td>
+                                        <td>12% - 17%</td>
+                                        <td>Month 1 of 8</td>
+                                        <td><span class="status-badge">Active</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
-            <!-- Transaction History Card -->
-            <div class="dashboard-card">
-                <h3>Recent Transaction Log</h3>
-                <div class="table-responsive">
-                    <table class="dashboard-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Transaction Type</th>
-                                <th>Channel</th>
-                                <th>Amount</th>
-                                <th>Reference / TrxID</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>May 12, 2026</td>
-                                <td>Investment Allocation</td>
-                                <td>bKash</td>
-                                <td style="color: #d9534f;">-50,000 BDT</td>
-                                <td>TrxID: 9N74H89A2</td>
-                            </tr>
-                            <tr>
-                                <td>May 01, 2026</td>
-                                <td>Profit Payout Received</td>
-                                <td>Wallet Credit</td>
-                                <td style="color: var(--accent-green);">+4,850 BDT</td>
-                                <td>Cycle Completion #104</td>
-                            </tr>
-                            <tr>
-                                <td>April 15, 2026</td>
-                                <td>Wallet Deposit</td>
-                                <td>Nagad</td>
-                                <td style="color: var(--accent-green);">+50,000 BDT</td>
-                                <td>TrxID: 4M21K90B8</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- Transaction History Card -->
+                    <div class="dashboard-card" style="margin-bottom: 0;">
+                        <h3>Recent Transaction Log</h3>
+                        <div class="table-responsive">
+                            <table class="dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Transaction Type</th>
+                                        <th>Channel</th>
+                                        <th>Amount</th>
+                                        <th>Reference / TrxID</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>May 12, 2026</td>
+                                        <td>Investment Allocation</td>
+                                        <td>bKash</td>
+                                        <td style="color: #d9534f;">-50,000 BDT</td>
+                                        <td>TrxID: 9N74H89A2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>May 01, 2026</td>
+                                        <td>Profit Payout Received</td>
+                                        <td>Wallet Credit</td>
+                                        <td style="color: var(--accent-green);">+4,850 BDT</td>
+                                        <td>Cycle Completion #104</td>
+                                    </tr>
+                                    <tr>
+                                        <td>April 15, 2026</td>
+                                        <td>Wallet Deposit</td>
+                                        <td>Nagad</td>
+                                        <td style="color: var(--accent-green);">+50,000 BDT</td>
+                                        <td>TrxID: 4M21K90B8</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Right Column: Quick Actions Sidebar -->
+                <div>
+                    <div class="dashboard-card">
+                        <h3>Quick Actions</h3>
+                        <a href="projects.html" class="quick-action-btn">＋ Deposit Funds to Wallet</a>
+                        <a href="projects.html" class="quick-action-btn">📋 Download Profit Certificates</a>
+                        <a href="how-it-works.html" class="quick-action-btn">🛡️ Shariah Audit Summary</a>
+                        <a href="projects.html" class="quick-action-btn">⚙️ Account Verification (KYC)</a>
+                    </div>
+
+                    <div class="dashboard-card" style="background: var(--light-green); border-color: var(--accent-green);">
+                        <h3 style="margin-bottom: 10px;">Shariah Compliance</h3>
+                        <p style="font-size: 14px; color: var(--text-main); line-height: 1.5;">
+                            All funds in your portfolio are 100% asset-backed and structured under Islamic Murabaha & Mudaraba guidelines. Zero interest (Riba).
+                        </p>
+                    </div>
+                </div>
+
             </div>
 
         </div>
