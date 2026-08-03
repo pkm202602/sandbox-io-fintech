@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandbox.io - Active Investment Campaigns</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            padding: 160px 0 60px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #f1f8f5 0%, #ffffff 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .page-header h1 {
+            font-size: 38px;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Controls */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .filter-btn {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-green);
+            color: #fff;
+            border-color: var(--primary-green);
+        }
+
+        /* Projects Grid Layout */
+        .projects-section {
+            padding: 20px 0 80px 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-4px);
+        }
+
+        .project-header {
+            background: var(--light-green);
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .project-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 4px;
+        }
+
+        .project-location {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .badge-category {
+            background: var(--badge-bg);
+            color: var(--primary-green);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .project-body {
+            padding: 20px;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .metric-label {
+            color: var(--text-muted);
+        }
+
+        .metric-value {
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+
+        .project-footer {
+            padding: 15px 20px;
+            background: #fdfdfd;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            background: var(--surface-color);
+        }
+
+        footer p {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header style="position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); z-index: 1000;">
+        <a href="index.html" style="font-size: 22px; font-weight: 700; color: var(--primary-green);">Sandbox<span style="color: var(--accent-green);">.io</span></a>
+        <nav>
+            <ul style="display: flex; list-style: none; gap: 30px;">
+                <li><a href="index.html" style="color: var(--text-muted);">Home</a></li>
+                <li><a href="projects.html" style="color: var(--primary-green); font-weight: 600;">Campaigns</a></li>
+                <li><a href="how-it-works.html" style="color: var(--text-muted);">How It Works</a></li>
+            </ul>
+        </nav>
+        <a href="projects.html" class="btn-primary">Invest Now</a>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Active Investment Marketplace</h1>
+            <p>Explore verified Murabaha asset-backed growth campaigns across Bangladesh.</p>
+            
+            <!-- Category Filtering Controls -->
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterProjects('all')">All Opportunities</button>
+                <button class="filter-btn" onclick="filterProjects('agriculture')">Agriculture</button>
+                <button class="filter-btn" onclick="filterProjects('livestock')">Livestock</button>
+                <button class="filter-btn" onclick="filterProjects('fisheries')">Fisheries</button>
+                <button class="filter-btn" onclick="filterProjects('trading')">Trading & SME</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid Section -->
+    <section class="projects-section">
+        <div class="container">
+            <div class="projects-grid" id="projectGrid">
+                
+                <!-- Card 1: Agriculture -->
+                <div class="project-card" data-category="agriculture">
+                    <div class="project-header">
+                        <div>
+                            <h3>Banana Harvest & Trading</h3>
+                            <div class="project-location">Khulna, Bangladesh</div>
+                        </div>
+                        <span class="badge-category">Agri</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="metric-row"><span class="metric-label">Min Investment:</span><span class="metric-value">15,000 BDT</span></div>
+                        <div class="metric-row"><span class="metric-label">Target Return:</span><span class="metric-value">21% - 25% (Annualized)</span></div>
+                        <div class="metric-row"><span class="metric-label">Tenure:</span><span class="metric-value">6 Months</span></div>
+                        <div class="metric-row"><span class="metric-label">Status:</span><span class="metric-value" style="color: var(--accent-green);">Funding Open</span></div>
+                    </div>
+                    <div class="project-footer"><button class="btn-primary" style="width:100%;">Back This Campaign</button></div>
+                </div>
+
+                <!-- Card 2: Trading -->
+                <div class="project-card" data-category="trading">
+                    <div class="project-header">
+                        <div>
+                            <h3>Onion Storage & Trading - 1</h3>
+                            <div class="project-location">Khulna, Bangladesh</div>
+                        </div>
+                        <span class="badge-category">Trading</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="metric-row"><span class="metric-label">Min Investment:</span><span class="metric-value">20,000 BDT</span></div>
+                        <div class="metric-row"><span class="metric-label">Expected Return:</span><span class="metric-value">11.5% - 14%</span></div>
+                        <div class="metric-row"><span class="metric-label">Tenure:</span><span class="metric-value">4 Months</span></div>
+                        <div class="metric-row"><span class="metric-label">Status:</span><span class="metric-value" style="color: var(--accent-green);">Funding Open</span></div>
+                    </div>
+                    <div class="project-footer"><button class="btn-primary" style="width:100%;">Back This Campaign</button></div>
+                </div>
+
+                <!-- Card 3: Livestock -->
+                <div class="project-card" data-category="livestock">
+                    <div class="project-header">
+                        <div>
+                            <h3>Cattle - 1 (গরু - ১)</h3>
+                            <div class="project-location">Ullapara, Jashore</div>
+                        </div>
+                        <span class="badge-category">Livestock</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="metric-row"><span class="metric-label">Min Investment:</span><span class="metric-value">25,000 BDT</span></div>
+                        <div class="metric-row"><span class="metric-label">Expected Return:</span><span class="metric-value">12% - 17%</span></div>
+                        <div class="metric-row"><span class="metric-label">Tenure:</span><span class="metric-value">8 Months</span></div>
+                        <div class="metric-row"><span class="metric-label">Status:</span><span class="metric-value" style="color: var(--accent-green);">Funding Open</span></div>
+                    </div>
+                    <div class="project-footer"><button class="btn-primary" style="width:100%;">Back This Campaign</button></div>
+                </div>
+
+                <!-- Card 4: Fisheries -->
+                <div class="project-card" data-category="fisheries">
+                    <div class="project-header">
+                        <div>
+                            <h3>Prawn & Mixed Fishery Pool</h3>
+                            <div class="project-location">Bagerhat, Khulna</div>
+                        </div>
+                        <span class="badge-category">Fisheries</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="metric-row"><span class="metric-label">Min Investment:</span><span class="metric-value">10,000 BDT</span></div>
+                        <div class="metric-row"><span class="metric-label">Expected Return:</span><span class="metric-value">14% - 18%</span></div>
+                        <div class="metric-row"><span class="metric-label">Tenure:</span><span class="metric-value">5 Months</span></div>
+                        <div class="metric-row"><span class="metric-label">Status:</span><span class="metric-value" style="color: var(--accent-green);">Funding Open</span></div>
+                    </div>
+                    <div class="project-footer"><button class="btn-primary" style="width:100%;">Back This Campaign</button></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="font-size: 20px; font-weight: 700; color: var(--primary-green); margin-bottom: 10px;">Sandbox<span style="color: var(--accent-green);">.io</span></div>
+            <p>Sandbox Technology Limited (Sandbox.io) | Khulna, Bangladesh</p>
+            <p>Phone: +8801700680069 | Email: sandbox.ioglobal@gmail.com</p>
+            <p style="margin-top: 15px;">&copy; 2026 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Filtering Logic -->
+    <script>
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update active state on buttons
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter cards visibility
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'all' || cardCategory === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
