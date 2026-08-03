@@ -106,5 +106,197 @@
             font-size: 12px;
             font-weight: 600;
         }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            background: var(--surface-color);
+        }
+
+        footer p {
+            margin-top: 5px;
+        }
     </style>
 </head>
+<body>
+
+    <!-- Navigation Bar with Mobile Hamburger Support -->
+    <header style="position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); z-index: 1000;">
+        <a href="index.html" style="font-size: 22px; font-weight: 700; color: var(--primary-green);">Sandbox<span style="color: var(--accent-green);">.io</span></a>
+        
+        <!-- Hamburger Toggle Button -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Navigation Menu -->
+        <nav class="site-nav" id="navMenu">
+            <ul style="display: flex; list-style: none; gap: 30px;">
+                <li><a href="index.html" style="color: var(--text-muted);">Home</a></li>
+                <li><a href="projects.html" style="color: var(--text-muted);">Campaigns</a></li>
+                <li><a href="dashboard.html" style="color: var(--primary-green); font-weight: 600;">Dashboard</a></li>
+                <li><a href="how-it-works.html" style="color: var(--text-muted);">How It Works</a></li>
+            </ul>
+        </nav>
+        
+        <a href="projects.html" class="btn-primary desktop-cta">New Investment</a>
+    </header>
+
+    <!-- Dashboard Main Content Section -->
+    <section class="dashboard-section">
+        <div class="container">
+            
+            <!-- Welcome Header -->
+            <div class="dashboard-header">
+                <div>
+                    <h1 style="color: var(--primary-green); font-size: 28px; margin-bottom: 5px;">Investor Dashboard</h1>
+                    <p style="color: var(--text-muted); font-size: 15px;">Welcome back, Rahim! Here is a summary of your asset-backed Murabaha portfolio.</p>
+                </div>
+                <div>
+                    <a href="projects.html" class="btn-primary">Explore Campaigns</a>
+                </div>
+            </div>
+
+            <!-- Metric Summary Cards Grid -->
+            <div class="dashboard-metrics-grid">
+                <div class="metric-card">
+                    <div class="label">Total Invested Capital</div>
+                    <div class="value">145,000 BDT</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">Active Campaigns</div>
+                    <div class="value">3 Projects</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">Halal Profit Earned</div>
+                    <div class="value" style="color: var(--accent-green);">14,850 BDT</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">Available Wallet Balance</div>
+                    <div class="value">12,500 BDT</div>
+                </div>
+            </div>
+
+            <!-- Active Campaign Allocations Card -->
+            <div class="dashboard-card">
+                <h3>Active Campaign Allocations</h3>
+                <div class="table-responsive">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Campaign Title</th>
+                                <th>Category</th>
+                                <th>Invested Amount</th>
+                                <th>Expected Return</th>
+                                <th>Tenure Progress</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Banana Harvest & Trading</strong></td>
+                                <td>Agriculture</td>
+                                <td>45,000 BDT</td>
+                                <td>21% - 25%</td>
+                                <td>Month 3 of 6</td>
+                                <td><span class="status-badge">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Onion Storage & Trading - 1</strong></td>
+                                <td>Trading</td>
+                                <td>50,000 BDT</td>
+                                <td>11.5% - 14%</td>
+                                <td>Month 2 of 4</td>
+                                <td><span class="status-badge">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cattle - 1 (গরু - ১)</strong></td>
+                                <td>Livestock</td>
+                                <td>50,000 BDT</td>
+                                <td>12% - 17%</td>
+                                <td>Month 1 of 8</td>
+                                <td><span class="status-badge">Active</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Transaction History Card -->
+            <div class="dashboard-card">
+                <h3>Recent Transaction Log</h3>
+                <div class="table-responsive">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Transaction Type</th>
+                                <th>Channel</th>
+                                <th>Amount</th>
+                                <th>Reference / TrxID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>May 12, 2026</td>
+                                <td>Investment Allocation</td>
+                                <td>bKash</td>
+                                <td style="color: #d9534f;">-50,000 BDT</td>
+                                <td>TrxID: 9N74H89A2</td>
+                            </tr>
+                            <tr>
+                                <td>May 01, 2026</td>
+                                <td>Profit Payout Received</td>
+                                <td>Wallet Credit</td>
+                                <td style="color: var(--accent-green);">+4,850 BDT</td>
+                                <td>Cycle Completion #104</td>
+                            </tr>
+                            <tr>
+                                <td>April 15, 2026</td>
+                                <td>Wallet Deposit</td>
+                                <td>Nagad</td>
+                                <td style="color: var(--accent-green);">+50,000 BDT</td>
+                                <td>TrxID: 4M21K90B8</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="font-size: 20px; font-weight: 700; color: var(--primary-green); margin-bottom: 10px;">Sandbox<span style="color: var(--accent-green);">.io</span></div>
+            <p>Sandbox Technology Limited (Sandbox.io) | Khulna, Bangladesh</p>
+            <p>Phone: +8801700680069 | Email: sandbox.ioglobal@gmail.com</p>
+            <p style="margin-top: 15px;">&copy; 2026 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        const hamburger = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
