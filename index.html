@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandbox.io - Agri-Fintech & Rural Investment Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Home-specific styles */
+        .hero {
+            padding: 180px 0 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #f1f8f5 0%, #ffffff 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 650px;
+            margin: 0 auto 30px auto;
+        }
+
+        .stats-bar {
+            background: var(--primary-green);
+            color: #fff;
+            padding: 40px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 32px;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: #d1e7dd;
+            font-size: 14px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-4px);
+        }
+
+        .project-header {
+            background: var(--light-green);
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 4px;
+        }
+
+        .project-location {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .project-body {
+            padding: 20px;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .metric-label {
+            color: var(--text-muted);
+        }
+
+        .metric-value {
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+
+        .project-footer {
+            padding: 15px 20px;
+            background: #fdfdfd;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            background: var(--surface-color);
+        }
+
+        footer p {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header style="position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); z-index: 1000;">
+        <a href="index.html" style="font-size: 22px; font-weight: 700; color: var(--primary-green);">Sandbox<span style="color: var(--accent-green);">.io</span></a>
+        <nav>
+            <ul style="display: flex; list-style: none; gap: 30px;">
+                <li><a href="index.html" style="color: var(--primary-green); font-weight: 600;">Home</a></li>
+                <li><a href="projects.html" style="color: var(--text-muted);">Campaigns</a></li>
+                <li><a href="how-it-works.html" style="color: var(--text-muted);">How It Works</a></li>
+            </ul>
+        </nav>
+        <a href="projects.html" class="btn-primary">Invest Now</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Empowering Rural Growth Through Shariah-Compliant Agri-Fintech</h1>
+            <p>Connecting investors with verified, asset-backed agricultural, fisheries, and livestock opportunities in Bangladesh.</p>
+            <a href="projects.html" class="btn-primary" style="padding: 14px 28px; font-size: 16px;">Explore Active Campaigns</a>
+        </div>
+    </section>
+
+    <!-- Macro Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>$50B+</h3>
+                    <p>Bangladesh Agricultural Economy</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Asset-Backed Murabaha Structure</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Khulna</h3>
+                    <p>Headquartered in Bangladesh</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Campaigns Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Investment Opportunities</h2>
+                <p>Browse hand-picked, verified rural growth campaigns ready for backing.</p>
+            </div>
+            
+            <div class="featured-grid">
+                <!-- Card 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Banana Harvest & Trading</h3>
+                        <div class="project-location">Khulna</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="metric-row"><span class="metric-label">Target Return:</span><span class="metric-value">21% - 25% (Annualized)</span></div>
+                        <div class="metric-row"><span class="metric-label">Status:</span><span class="metric-value">Previous Cycle Repaid</span></div>
+                    </div>
+                    <div class="project-footer"><a href="projects.html" class="btn-primary" style="display:block;">View Campaign</a></div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Onion Storage & Trading - 1</h3>
+                        <div class="project-location">Khulna, Bangladesh</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="metric-row"><span class="metric-label">Min Investment:</span><span class="metric-value">20,000 TK</span></div>
+                        <div class="metric-row"><span class="metric-label">Expected Return:</span><span class="metric-value">11.5% - 14%</span></div>
+                    </div>
+                    <div class="project-footer"><a href="projects.html" class="btn-primary" style="display:block;">View Campaign</a></div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Cattle - 1 (গরু - ১)</h3>
+                        <div class="project-location">Ullapara, Jashore</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="metric-row"><span class="metric-label">Min Investment:</span><span class="metric-value">25,000 BDT</span></div>
+                        <div class="metric-row"><span class="metric-label">Expected Return:</span><span class="metric-value">12% - 17%</span></div>
+                    </div>
+                    <div class="project-footer"><a href="projects.html" class="btn-primary" style="display:block;">View Campaign</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="font-size: 20px; font-weight: 700; color: var(--primary-green); margin-bottom: 10px;">Sandbox<span style="color: var(--accent-green);">.io</span></div>
+            <p>Sandbox Technology Limited (Sandbox.io) | Khulna, Bangladesh</p>
+            <p>Phone: +8801700680069 | Email: sandbox.ioglobal@gmail.com</p>
+            <p style="margin-top: 15px;">&copy; 2026 All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
