@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandbox.io - Deposit & Payment Gateway</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-green: #1b4332;
+            --accent-green: #2d6a4f;
+            --light-green: #e8f5e9;
+            --surface-color: #ffffff;
+            --border-color: #e0e0e0;
+            --text-main: #212529;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: #f9fbf9;
+            color: var(--text-main);
+        }
+
+        .payment-section {
+            padding: 140px 0 80px 0;
+            background: #f9fbf9;
+            min-height: 85vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .payment-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .payment-card h2 {
+            color: var(--primary-green);
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .payment-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* Gateway Selector Tabs */
+        .gateway-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .gateway-tab {
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            background: #ffffff;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .gateway-tab.active {
+            border-color: var(--primary-green);
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        /* Instruction Box & Copy Feature */
+        .instruction-box {
+            background: var(--light-green);
+            border: 1px solid var(--accent-green);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .instruction-box h4 {
+            color: var(--primary-green);
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .instruction-box ol {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 14px;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .wallet-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .copy-btn {
+            background: var(--primary-green);
+            color: #ffffff;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-green);
+        }
+
+        /* Form Inputs */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-green);
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background: var(--primary-green);
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent-green);
+        }
+
+        /* Header & Footer Common Styles */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--primary-green);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .site-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (max-width: 768px) {
+            .site-header {
+                padding: 15px 20px !important;
+            }
+            .hamburger {
+                display: flex !important;
+            }
+            .site-nav {
+                display: none !important;
+                position: fixed !important;
+                top: 71px !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: calc(100vh - 71px) !important;
+                background: #ffffff !important;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+                padding: 30px 20px !important;
+                box-sizing: border-box !important;
+                z-index: 999 !important;
+            }
+            .site-nav.active {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            .site-nav ul {
+                flex-direction: column !important;
+                gap: 20px !important;
+            }
+            .desktop-cta {
+                display: none !important;
+            }
+            .gateway-tabs {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            background: var(--surface-color);
+        }
+
+        footer p {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="site-header">
+        <a href="index.html" style="font-size: 22px; font-weight: 700; color: var(--primary-green); text-decoration: none;">Sandbox<span style="color: var(--accent-green);">.io</span></a>
+        
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="site-nav" id="navMenu">
+            <ul>
+                <li><a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 16px;">Home</a></li>
+                <li><a href="projects.html" style="color: var(--text-muted); text-decoration: none; font-size: 16px;">Campaigns</a></li>
+                <li><a href="dashboard.html" style="color: var(--text-muted); text-decoration: none; font-size: 16px;">Dashboard</a></li>
+                <li><a href="how-it-works.html" style="color: var(--text-muted); text-decoration: none; font-size: 16px;">How It Works</a></li>
+            </ul>
+        </nav>
+        
+        <a href="dashboard.html" class="btn-primary desktop-cta" style="background: var(--primary-green); color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600;">Back to Dashboard</a>
+    </header>
+
+    <!-- Payment Gateway Section -->
+    <section class="payment-section">
+        <div class="container">
+            
+            <div class="payment-card">
+                <h2>Fund Your Wallet / Investment</h2>
+                <p>Select your preferred local mobile financial service (MFS) provider to complete your transaction safely.</p>
+                
+                <!-- Step 1: Gateway Selector Tabs -->
+                <div class="gateway-tabs">
+                    <div class="gateway-tab active" onclick="switchGateway('bkash')">bKash Merchant Payment</div>
+                    <div class="gateway-tab" onclick="switchGateway('nagad')">Nagad Merchant Payment</div>
+                </div>
+
+                <!-- Step 2 & 3: Dynamic Instructions & Copy Feature -->
+                <div id="bkashInstructions" class="instruction-box">
+                    <h4>bKash Payment Steps</h4>
+                    <ol>
+                        <li>Open your bKash App or dial <strong>*247#</strong></li>
+                        <li>Select <strong>Payment</strong></li>
+                        <li>Enter Sandbox.io Merchant Wallet Number below</li>
+                        <li>Enter Amount in BDT and your Reference: <strong>INV-9042</strong></li>
+                        <li>Enter your bKash Mobile Menu PIN to confirm</li>
+                    </ol>
+                    <div class="wallet-display">
+                        <span>Merchant Wallet: <strong id="bkashNumber">01700680069</strong></span>
+                        <button class="copy-btn" onclick="copyToClipboard('bkashNumber', this)">Copy Number</button>
+                    </div>
+                </div>
+
+                <div id="nagadInstructions" class="instruction-box" style="display: none;">
+                    <h4>Nagad Payment Steps</h4>
+                    <ol>
+                        <li>Open your Nagad App or dial <strong>*167#</strong></li>
+                        <li>Select <strong>Merchant Pay</strong></li>
+                        <li>Enter Sandbox.io Nagad Merchant Number below</li>
+                        <li>Enter Amount in BDT and your Reference: <strong>INV-9042</strong></li>
+                        <li>Enter your Nagad PIN to confirm</li>
+                    </ol>
+                    <div class="wallet-display">
+                        <span>Merchant Wallet: <strong id="nagadNumber">01700680070</strong></span>
+                        <button class="copy-btn" onclick="copyToClipboard('nagadNumber', this)">Copy Number</button>
+                    </div>
+                </div>
+
+                <!-- Step 4 & 5: Verification Form -->
+                <form onsubmit="handlePaymentSubmit(event)">
+                    <h3 style="color: var(--primary-green); font-size: 18px; margin-bottom: 20px;">Submit Transaction Proof</h3>
+                    
+                    <div class="form-group">
+                        <label for="senderNumber">Sender Mobile Number</label>
+                        <input type="text" id="senderNumber" placeholder="e.g., 018XXXXXXXX" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paidAmount">Amount Sent (BDT)</label>
+                        <input type="number" id="paidAmount" placeholder="e.g., 50000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="trxId">Transaction ID (TrxID)</label>
+                        <input type="text" id="trxId" placeholder="e.g., 9N74H89A2" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Verify & Submit Payment</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="font-size: 20px; font-weight: 700; color: var(--primary-green); margin-bottom: 10px;">Sandbox<span style="color: var(--accent-green);">.io</span></div>
+            <p>Sandbox Technology Limited (Sandbox.io) | Khulna, Bangladesh</p>
+            <p>Phone: +8801700680069 | Email: sandbox.ioglobal@gmail.com</p>
+            <p style="margin-top: 15px;">&copy; 2026 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // Switch Gateway Instructions
+        function switchGateway(gateway) {
+            const tabs = document.querySelectorAll('.gateway-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const bkashBox = document.getElementById('bkashInstructions');
+            const nagadBox = document.getElementById('nagadInstructions');
+
+            if (gateway === 'bkash') {
+                tabs[0].classList.add('active');
+                bkashBox.style.display = 'block';
+                nagadBox.style.display = 'none';
+            } else {
+                tabs[1].classList.add('active');
+                nagadBox.style.display = 'block';
+                bkashBox.style.display = 'none';
+            }
+        }
+
+        // Copy to Clipboard Feature
+        function copyToClipboard(elementId, btnElement) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = btnElement.innerText;
+                btnElement.innerText = 'Copied!';
+                btnElement.style.background = '#2d6a4f';
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                }, 2000);
+            });
+        }
+
+        // Form Submission Handler
+        function handlePaymentSubmit(event) {
+            event.preventDefault();
+            alert('Payment verification details submitted successfully! Your wallet balance will be updated after admin review.');
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>
