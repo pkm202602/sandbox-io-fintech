@@ -154,17 +154,27 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar with Mobile Hamburger Support -->
     <header style="position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); z-index: 1000;">
         <a href="index.html" style="font-size: 22px; font-weight: 700; color: var(--primary-green);">Sandbox<span style="color: var(--accent-green);">.io</span></a>
-        <nav>
+        
+        <!-- Hamburger Toggle Button -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Navigation Menu -->
+        <nav class="site-nav" id="navMenu">
             <ul style="display: flex; list-style: none; gap: 30px;">
                 <li><a href="index.html" style="color: var(--text-muted);">Home</a></li>
                 <li><a href="projects.html" style="color: var(--primary-green); font-weight: 600;">Campaigns</a></li>
                 <li><a href="how-it-works.html" style="color: var(--text-muted);">How It Works</a></li>
             </ul>
         </nav>
-        <a href="projects.html" class="btn-primary">Invest Now</a>
+        
+        <a href="projects.html" class="btn-primary desktop-cta">Invest Now</a>
     </header>
 
     <!-- Page Header -->
@@ -293,6 +303,25 @@
                 } else {
                     card.style.display = 'none';
                 }
+            });
+        }
+    </script>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        const hamburger = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Close menu automatically when a link is clicked
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
             });
         }
     </script>
